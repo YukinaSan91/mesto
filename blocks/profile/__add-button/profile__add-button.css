@@ -11,8 +11,7 @@
   background-color: transparent;
   object-fit: cover;
   transition: opacity .5s linear;
-  position: absolute;
-  right: 0;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
