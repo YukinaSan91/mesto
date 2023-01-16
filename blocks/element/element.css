@@ -1,10 +1,7 @@
 .element {
   margin: 0;
   padding: 0;
-  max-width: 282px;
-  height: 361px;
+  width: 100%;
   background: white;
-  background-size: 282px;
   border-radius: 10px;
-  position: relative;
 }
