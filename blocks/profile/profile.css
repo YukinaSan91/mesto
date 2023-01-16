@@ -10,12 +10,9 @@
   position: relative;
 }
 
-@media screen and (min-width: 768px) and (max-width: 890px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   .profile {
-    margin-top: 42px;
-    max-width: 282px;
-    flex-direction: column;
-    align-items: center;
+    max-width: 620px;
   }
 }
 

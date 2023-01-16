@@ -10,8 +10,6 @@
   object-fit: cover;
   color: #000000;
   border: none;
-  position: absolute;
-  right: 20px;
   transition: opacity .5s linear;
   cursor: pointer;
 }
