@@ -23,59 +23,56 @@
         <button aria-label="добавить" class="profile__add-button" name="add-button" type="button"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <h2 class="element__text">Карачаевск
-            <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
-          </h2>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-          <h2 class="element__text">Гора Эльбрус
-            <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
-          </h2>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
-          <h2 class="element__text">Домбай
-            <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
-          </h2>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/biysk.jpg" alt="Бийск">
-          <h2 class="element__text">Бийск
-            <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
-          </h2>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/altai.jpg" alt="Алтай">
-          <h2 class="element__text">Алтайские горы
-            <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
-          </h2>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/shato-erken.jpg" alt="Шато Эркен">
-          <h2 class="element__text">Шато Эркен
-            <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
-          </h2>
-        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+    <!--Popup редактирования профиля-->
     <div class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <form class="popup__form" name="myform">
+        <form class="popup__form popup__form_type_edit" name="myform">
           <input class="popup__text popup__text_type_name" name="Forename" type="text" placeholder="Жак-Ив Кусто" required>
           <input class="popup__text popup__text_type_job" name="Job" type="text" placeholder="Исследователь океана" required>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
+    <!--Popup добавления карточек-->
+    <div class="popup popup_type_add">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__heading">Новое место</h2>
+        <form class="popup__form popup__form_type_add" name="myform">
+          <input class="popup__text popup__text_type_title" name="name" type="text" placeholder="Название" required>
+          <input class="popup__text popup__text_type_url" name="url" type="url" placeholder="Ссылка на картинку" required>
+          <button class="popup__save-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <!--Popup открытия изображения-->
+    <div class="popup popup_type_image">
+      <div class="popup__card-image">
+        <button class="popup__close" type="button"></button>
+        <img class="popup__image" src="#" alt="">
+        <h2 class="popup__title"></h2>
+      </div>
+    </div>
   </div>
+  <!--Темплейты-->
+  <template id="card-template">
+    <article class="element">
+      <img class="element__image" src="#" alt="">
+      <button aria-label="удаление" class="element__del-button" name="del-button" type="button"></button>
+      <div class="element__info">
+        <h2 class="element__text"></h2>
+        <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
+      </div>
+    </article>
+  </template>
+  <script src="./scripts/massiv.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
