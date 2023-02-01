@@ -6,7 +6,7 @@ const initialCards = [
   },
   {
     name: 'Эльбрус',
-    link: 'https://kartinkin.net/pics/uploads/posts/2022-08/1659588387_27-kartinkin-net-p-vid-na-elbrus-s-chegeta-priroda-krasivo-fo-27.jpg'
+    link: 'https://www.gold-volga.ru/system/poi_pois/612/photos/1020x700/16034464005461636.jpg'
   },
   {
     name: 'Домбай',

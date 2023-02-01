@@ -25,21 +25,13 @@ const urlAddInput = formAddElement.querySelector('.popup__text_type_url');
 const cardsList = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.element');
 
-
+//Передаем данные в переменные от пользователя
+nameInput.value = profileName.textContent;
+jobInput.value = profileJob.textContent;
 
 // Открытие попапа
-const popupOpen = function() {
-  popupElement.classList.add('popup_opened');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-};
-
-const openPopup = function() {
-  popupAddElement.classList.add('popup_opened');
-};
-
-const openImgPopup = function() {
-  popupImgElement.classList.add('popup_opened');
+const openPopup = function(popup) {
+  popup.classList.add('popup_opened');
 };
 
 // Закрытие попапа
@@ -64,7 +56,7 @@ function renderCards (initialCards) {
     const cardTitleElement = document.querySelector('.popup__title');
 
     card.querySelector('.element__image').addEventListener('click', function() {
-      openImgPopup();
+      openPopup(popupImgElement);
       cardImgElement.src = item.link;
       cardAltElement.alt = item.name;
       cardTitleElement.textContent = item.name;
@@ -111,6 +103,8 @@ formElement.addEventListener('submit', handleFormSubmit);
 formAddElement.addEventListener('submit', handleFormAddSubmit);
 
 //Слушатели событий
-popupOpenButtonElement.addEventListener('click', popupOpen);
-popupAddButtonElement.addEventListener('click', openPopup);
+popupOpenButtonElement.addEventListener('click', function() {
+  openPopup(popupElement)});
+popupAddButtonElement.addEventListener('click', function() {
+  openPopup(popupAddElement)});
 
