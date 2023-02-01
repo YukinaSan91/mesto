@@ -2,7 +2,7 @@
 const initialCards = [
   {
     name: 'Карачаевск',
-    link: 'http://rasfokus.ru/images/photos/medium/8ffeea8cd0355dfd6af9e75d0914f154.jpg'
+    link: 'https://i.pinimg.com/originals/b8/58/26/b858268aa0e97ad7558b73b5279d98b9.jpg'
   },
   {
     name: 'Эльбрус',
