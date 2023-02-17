@@ -1,33 +1,3 @@
-//Попапы
-const profilePopup = document.querySelector('.popup_type_edit');
-const popupAddElement = document.querySelector('.popup_type_add');
-const popupImgElement = document.querySelector('.popup_type_image');
-
-const cardImgElement = document.querySelector('.popup__image');
-const cardTitleElement = document.querySelector('.popup__title');
-
-//Кнопки для управления попапами
-const popupCloseButtonElements = document.querySelectorAll('.popup__close');
-const popupAddButtonElement = document.querySelector('.profile__add-button');
-const popupOpenButtonElement = document.querySelector('.profile__popup-open');
-const popupSaveButtonElement = document.querySelector('.popup__save-button');
-
-//Формы
-const formElement = profilePopup.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__text_type_name');
-const jobInput = formElement.querySelector('.popup__text_type_job');
-
-const profileName = document.querySelector('.profile__title');
-const profileJob = document.querySelector('.profile__text');
-
-const formAddElement = document.querySelector('.popup__form_type_add');
-const nameAddInput = formAddElement.querySelector('.popup__text_type_title');
-const urlAddInput = formAddElement.querySelector('.popup__text_type_url');
-
-//Темплейты
-const cardsList = document.querySelector('.elements');
-const cardTemplate = document.querySelector('#card-template').content.querySelector('.element');
-
 //Передаем данные в переменные от пользователя
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
@@ -35,16 +5,41 @@ jobInput.value = profileJob.textContent;
 // Открытие попапа
 const openPopup = function(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleClosePopupByEsc);
 };
 
 // Закрытие попапа
-const closePopup = function(evt) {
-   evt.target.closest('.popup').classList.remove('popup_opened');
+const closePopup = function(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleClosePopupByEsc);
 };
 
-popupCloseButtonElements.forEach((closeButton) => {
-  closeButton.addEventListener('click', closePopup);
+popupElement.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    };
+  });
 });
+
+//Закрытие по оверлею
+const closePopupClickOnOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.currentTarget);
+  };
+};
+
+popupElement.forEach((popup) => {
+  popup.addEventListener('click', closePopupClickOnOverlay);
+});
+
+//Закрытие по Esc
+function handleClosePopupByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openPopup = document.querySelector('.popup_opened');
+    closePopup(openPopup);
+  };
+};
 
 //Функция карточки
 function createCard(item) {
@@ -90,7 +85,7 @@ function handleFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(evt);
+  closePopup(profilePopup);
 };
 
 function handleFormAddSubmit (evt) {
@@ -101,15 +96,14 @@ function handleFormAddSubmit (evt) {
     link: urlAddInput.value,
   }];
 
-  evt.target.reset();
-
   renderCards(addCard);
-  closePopup(evt);
+  closePopup(popupAddElement);
+  evt.target.reset();
 };
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', handleFormSubmit);
+formEditElement.addEventListener('submit', handleFormSubmit);
 formAddElement.addEventListener('submit', handleFormAddSubmit);
 
 //Слушатели событий
