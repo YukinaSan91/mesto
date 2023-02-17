@@ -31,7 +31,7 @@ const checkInputValidity = (popupFormElement, formInputElement, object) => {
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((formInputElement) => {
-  return !formInputElement.validity.valid;
+    return !formInputElement.validity.valid;
   });
 };
 
