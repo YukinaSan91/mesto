@@ -6,8 +6,15 @@ import {formsObjConfig,
   popupElement,
   profilePopup,
   popupAddElement,
+  popupImgElement,
+  cardImgElement,
+  cardTitleElement,
+  popupCloseButtonElements,
   popupAddButtonElement,
   popupOpenButtonElement,
+  popupSaveButtonElement,
+  popupFormElement,
+  formInputElement,
   formEditElement,
   nameInput,
   jobInput,
@@ -20,8 +27,8 @@ import {formsObjConfig,
 } from '../utils/const.js';
 
 //Импорт классов
-import Card from './card.js';
-import FormValidator from './formValidator.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 
 //Передаем данные в переменные от пользователя
@@ -34,6 +41,14 @@ const openPopup = function (popup) {
   document.addEventListener('keydown', handleClosePopupByEsc);
 };
 
+//Открытие попапа картинки
+function handleOpenPopup(name, link) {
+  cardImgElement.src = link;
+  cardImgElement.alt = name;
+  cardTitleElement.textContent = name;
+  openPopup(popupImgElement);
+};
+
 // Закрытие попапа
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
@@ -41,7 +56,7 @@ const closePopup = function (popup) {
 };
 
 popupElement.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
+  popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     };
@@ -60,12 +75,27 @@ popupElement.forEach((popup) => {
 });
 
 //Закрытие по Esc
-export function handleClosePopupByEsc(evt) {
+function handleClosePopupByEsc(evt) {
   if (evt.key === 'Escape') {
     const openPopup = document.querySelector('.popup_opened');
     closePopup(openPopup);
   };
 };
+
+//Созадние экземпляра класса карточки
+const createCard = (data) => {
+  const newCard = new Card(data, '#card-template', handleOpenPopup);
+  const cardElement = newCard.generateCard();
+  return cardElement;
+};
+
+function renderCards(initialCards) {
+  initialCards.forEach((item) => {
+    cardsList.prepend(createCard(item));
+  });
+};
+
+renderCards(initialCards);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -100,28 +130,25 @@ formAddElement.addEventListener('submit', handleFormAddSubmit);
 popupOpenButtonElement.addEventListener('click', function () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  formEditProfileValidate.resetValidation();
   openPopup(profilePopup);
 });
 
 popupAddButtonElement.addEventListener('click', function () {
+  formAddCardValidate.resetValidation();
   openPopup(popupAddElement);
 });
 
-//Созадние экземпляра класса карточки
-function renderCards(initialCards) {
-  initialCards.forEach((item) => {
-    const card = new Card(item, '#card-template');
-    const cardElement = card.generateCard();
+//initialCards.forEach((item) => {
+  //const newCard = new Card(item, data, templateSelector, handleOpenPopup);
 
-    cardsList.prepend(cardElement);
-  });
-};
-
-renderCards(initialCards);
+  //return newCard.createCard(cardsList);
+//});
 
 //Создание экземпляра класса валидации
 const formEditProfileValidate = new FormValidator(formsObjConfig, formEditElement);
 formEditProfileValidate.enableValidation();
+
 
 const formAddCardValidate = new FormValidator(formsObjConfig, formAddElement);
 formAddCardValidate.enableValidation();

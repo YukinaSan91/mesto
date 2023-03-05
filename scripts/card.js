@@ -1,14 +1,12 @@
-import {cardImgElement, cardTitleElement, popupImgElement} from '../utils/const.js';
-import {handleClosePopupByEsc} from './index.js';
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleOpenPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleOpenPopup = handleOpenPopup;
   };
 
-  _getTemplate() {
+  _getTemplate = () => {
     const cardTemplate = document
     .querySelector(this._templateSelector)
     .content
@@ -18,7 +16,7 @@ export default class Card {
     return cardTemplate;
   };
 
-  generateCard() {
+  generateCard = () => {
     this._element = this._getTemplate();
 
     this._cardTitle = this._element.querySelector('.element__text');
@@ -35,27 +33,23 @@ export default class Card {
     return this._element;
   };
 
-  _setEventListeners() {
-    this._cardImg.addEventListener('click', () => {
-      document.addEventListener('keydown', handleClosePopupByEsc);
-      this._handleOpenPopup();
-    });
-
-    this._delButton.addEventListener('click', (evt) => {
-      this._element.remove();
-      this._element = null;
-    });
-
-    this._likeButton.addEventListener('click', (evt) => {
-      evt.target.classList.toggle('element__like-button_active');
-    });
+  _delCard = () => {
+    this._element.remove();
+    this._element = null;
   };
 
-  _handleOpenPopup() {
-    cardImgElement.src = this._link;
-    cardImgElement.alt = this._name;
-    cardTitleElement.textContent = this._name;
-    popupImgElement.classList.add('popup_opened');
+  _likeCard = () => {
+    this._likeButton.classList.toggle('element__like-button_active');
+  };
+
+  _setEventListeners = () => {
+    this._cardImg.addEventListener('click', () =>{
+      this._handleOpenPopup(this._name, this._link);
+    });
+
+    this._delButton.addEventListener('click', this._delCard);
+
+    this._likeButton.addEventListener('click', this._likeCard);
   };
 };
 
