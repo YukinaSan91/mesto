@@ -139,12 +139,6 @@ popupAddButtonElement.addEventListener('click', function () {
   openPopup(popupAddElement);
 });
 
-//initialCards.forEach((item) => {
-  //const newCard = new Card(item, data, templateSelector, handleOpenPopup);
-
-  //return newCard.createCard(cardsList);
-//});
-
 //Создание экземпляра класса валидации
 const formEditProfileValidate = new FormValidator(formsObjConfig, formEditElement);
 formEditProfileValidate.enableValidation();
