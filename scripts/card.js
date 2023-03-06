@@ -43,7 +43,7 @@ export default class Card {
   };
 
   _setEventListeners = () => {
-    this._cardImg.addEventListener('click', () =>{
+    this._cardImg.addEventListener('click', () => {
       this._handleOpenPopup(this._name, this._link);
     });
 
