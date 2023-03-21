@@ -1,3 +1,6 @@
+//Импорт стилей
+import '../pages/index.css';
+
 //Импорт массива
 import {initialCards} from '../utils/massiv.js';
 
