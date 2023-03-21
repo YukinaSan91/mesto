@@ -9,13 +9,10 @@ const formsObjConfig = {
 };
 
 //Попапы
-const popupElement = document.querySelectorAll('.popup');
+const popupSelector = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_type_edit');
 const popupAddElement = document.querySelector('.popup_type_add');
 const popupImgElement = document.querySelector('.popup_type_image');
-
-const cardImgElement = document.querySelector('.popup__image');
-const cardTitleElement = document.querySelector('.popup__title');
 
 //Кнопки для управления попапами
 const popupCloseButtonElements = document.querySelectorAll('.popup__close');
@@ -42,12 +39,10 @@ const urlAddInput = formAddElement.querySelector('.popup__text_type_url');
 const cardsList = document.querySelector('.elements');
 
 export {formsObjConfig,
-  popupElement,
+  popupSelector,
   profilePopup,
   popupAddElement,
   popupImgElement,
-  cardImgElement,
-  cardTitleElement,
   popupCloseButtonElements,
   popupAddButtonElement,
   popupOpenButtonElement,
