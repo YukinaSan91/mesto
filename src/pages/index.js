@@ -87,7 +87,7 @@ addCardPopupForm.setEventListeners();
 
 //Слушатели событий
 popupOpenButtonElement.addEventListener('click', () => {
-  editProfilePopapForm.getInputValues(userInfo.getUserInfo());
+  editProfilePopapForm.setInputValues(userInfo.getUserInfo());
   formEditProfileValidate.resetValidation();
   editProfilePopapForm.open();
 });
