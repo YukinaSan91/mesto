@@ -12,6 +12,7 @@
   border: none;
   transition: opacity .5s linear;
   cursor: pointer;
+  align-self: flex-end;
 }
 
 .element__like-button:hover {

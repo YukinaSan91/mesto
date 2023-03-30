@@ -14,7 +14,10 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар">
+        <div class="profile__edit-avatar">
+          <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар">
+          <button class="profile__btn-avatar" name="edit-avatar" type="button"></button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__popup-open" name="popup-open" type="button"></button>
@@ -94,6 +97,34 @@
         <h2 class="popup__title"></h2>
       </div>
     </div>
+    <!--Popup редактирования аватара-->
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__heading">Обновить аватар</h2>
+        <form class="popup__form popup__form_type_avatar" name="avatar-form" novalidate>
+          <input
+            id="input-avatar"
+            class="popup__text popup__text_type_url-avatar"
+            name="avatar"
+            type="url"
+            placeholder="Ссылка на картинку"
+            required>
+          <span class="input-avatar-error popup__text-input-error" type="text"></span>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <!--Popup удаления карточки-->
+    <div class="popup popup_type_del-card">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__heading">Вы уверены?</h2>
+        <form class="popup__form popup__form_type_del-card" name="delete-form" novalidate>
+          <button class="popup__save-button" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
   </div>
   <!--Темплейты-->
   <template id="card-template">
@@ -102,7 +133,10 @@
       <button aria-label="удаление" class="element__del-button" name="del-button" type="button"></button>
       <div class="element__info">
         <h2 class="element__text"></h2>
-        <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
+        <div class="element__like">
+          <button aria-label="лайк" class="element__like-button" name="like-button" type="button"></button>
+          <span class="element__like-counter">0</span>
+        </div>
       </div>
     </article>
   </template>

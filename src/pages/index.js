@@ -10,10 +10,13 @@ import {formsObjConfig,
   profilePopup,
   popupAddElement,
   popupImgElement,
+  popupAvatarEdit,
+  popupDeleteCard,
   popupCloseButtonElements,
   popupAddButtonElement,
   popupOpenButtonElement,
   popupSaveButtonElement,
+  popupAvatarEditButtonElement,
   popupFormElement,
   formInputElement,
   formEditElement,
@@ -21,9 +24,12 @@ import {formsObjConfig,
   jobInput,
   profileName,
   profileJob,
+  profileAvatar,
   formAddElement,
   nameAddInput,
   urlAddInput,
+  formEditAvatar,
+  urlEditAvatarInput,
   cardsList
 } from '../utils/const.js';
 
@@ -62,7 +68,7 @@ const imgPopup = new PopupWithImage(popupImgElement);
 imgPopup.setEventListeners();
 
 //Попап редактирования профиля
-const userInfo = new UserInfo({profileName, profileJob});
+const userInfo = new UserInfo({profileName, profileJob, profileAvatar});
 
 const editProfilePopapForm = new PopupWithForm({
   popupSelector: profilePopup,
@@ -85,6 +91,17 @@ const addCardPopupForm = new PopupWithForm({
 
 addCardPopupForm.setEventListeners();
 
+//Попап редактирования аватара
+const editAvatarProfileForm = new PopupWithForm({
+  popupSelector: popupAvatarEdit,
+  handleFormSubmit: ({avatar}) => {
+    userInfo.setUserInfo({avatar});
+    editAvatarProfileForm.close();
+  }
+});
+
+editAvatarProfileForm.setEventListeners();
+
 //Слушатели событий
 popupOpenButtonElement.addEventListener('click', () => {
   editProfilePopapForm.setInputValues(userInfo.getUserInfo());
@@ -97,6 +114,11 @@ popupAddButtonElement.addEventListener('click', () => {
   addCardPopupForm.open();
 });
 
+popupAvatarEditButtonElement.addEventListener('click', () => {
+  formEditAvatarValidate.resetValidation();
+  editAvatarProfileForm.open();
+});
+
 //Создание экземпляра класса валидации
 const formEditProfileValidate = new FormValidator(formsObjConfig, formEditElement);
 formEditProfileValidate.enableValidation();
@@ -104,3 +126,6 @@ formEditProfileValidate.enableValidation();
 
 const formAddCardValidate = new FormValidator(formsObjConfig, formAddElement);
 formAddCardValidate.enableValidation();
+
+const formEditAvatarValidate = new FormValidator(formsObjConfig, formEditAvatar);
+formEditAvatarValidate.enableValidation();
