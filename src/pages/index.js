@@ -91,9 +91,7 @@ const createCard = (data) => {
 
 //Отрисовка карточек
 const newSection = new Section({
-  renderer: (data) => {
-    newSection.addItem(createCard(data));
-  },
+  renderer: createCard
 }, '.elements');
 
 
