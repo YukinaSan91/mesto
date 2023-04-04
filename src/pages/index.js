@@ -3,30 +3,15 @@ import '../pages/index.css';
 
 //Импорт констант
 import {formsObjConfig,
-  popupSelector,
-  profilePopup,
-  popupAddElement,
-  popupImgElement,
-  popupAvatarEdit,
-  popupDeleteCard,
-  popupCloseButtonElements,
   popupAddButtonElement,
   popupOpenButtonElement,
-  popupSaveButtonElement,
   popupAvatarEditButtonElement,
-  popupFormElement,
-  formInputElement,
   formEditElement,
-  nameInput,
-  jobInput,
   profileName,
   profileJob,
   profileAvatar,
   formAddElement,
-  nameAddInput,
-  urlAddInput,
   formEditAvatar,
-  urlEditAvatarInput,
   cardsList
 } from '../utils/const.js';
 
@@ -109,7 +94,7 @@ const newSection = new Section({
   renderer: (data) => {
     newSection.addItem(createCard(data));
   },
-}, cardsList);
+}, '.elements');
 
 
 //Открытие попапа картинки
@@ -118,12 +103,12 @@ const handleCardClick = (data) => {
 };
 
 //Попап картинки
-const imgPopup = new PopupWithImage(popupImgElement);
+const imgPopup = new PopupWithImage('.popup_type_image');
 imgPopup.setEventListeners();
 
 //Попап добавления новой карточки
 const addCardPopupForm = new PopupWithForm({
-  popupSelector: popupAddElement,
+  popupSelector: '.popup_type_add',
   handleFormSubmit: (data) => {
     addCardPopupForm.loading(true)
     api
@@ -146,7 +131,7 @@ const addCardPopupForm = new PopupWithForm({
 addCardPopupForm.setEventListeners();
 
 //Попап удаления карточки
-const popupWithConfirmDelCard = new PopupWithConfirmation(popupDeleteCard);
+const popupWithConfirmDelCard = new PopupWithConfirmation('.popup_type_del-card');
 popupWithConfirmDelCard.setEventListeners();
 
 //--------------------Профиль пользователя--------------------
@@ -155,7 +140,7 @@ popupWithConfirmDelCard.setEventListeners();
 const userInfo = new UserInfo({profileName, profileJob, profileAvatar});
 
 const editProfilePopapForm = new PopupWithForm({
-  popupSelector: profilePopup,
+  popupSelector: '.popup_type_edit',
   handleFormSubmit: (data) => {
     editProfilePopapForm.loading(true);
     api
@@ -177,7 +162,7 @@ editProfilePopapForm.setEventListeners();
 
 //Попап редактирования аватара
 const editAvatarProfileForm = new PopupWithForm({
-  popupSelector: popupAvatarEdit,
+  popupSelector: '.popup_type_avatar',
   handleFormSubmit: (data) => {
     editAvatarProfileForm.loading(true);
     api

@@ -1,7 +1,7 @@
 export default class Section {
   constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
-    this._container = containerSelector;
+    this._container = document.querySelector(containerSelector);
   };
 
   renderItems(cards) {
@@ -10,7 +10,11 @@ export default class Section {
     });
   };
 
-  addItem(element) {
-    this._container.prepend(element);
+  addItem(element, isInversed = false) {
+    if (isInversed) {
+      this._container.prepend(element);
+    } else {
+      this._container.append(element);
+    };
   };
 }

@@ -40,9 +40,9 @@ export default class PopupWithForm extends Popup {
 
 
 //Изменяем текст кнопки submit пока сохраняются данные
-  loading(isLoading) {
+  loading(isLoading, loadingText = 'Сохранение...') {
     if (isLoading) {
-      this._saveButton.textContent = 'Сохранение...';
+      this._saveButton.textContent = loadingText;
     } else {
       this._saveButton.textContent = this._saveButtonText;
     };
