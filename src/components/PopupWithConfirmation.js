@@ -4,6 +4,8 @@ export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._popupForm = this._popup.querySelector('.popup__form');
+    this._saveButton = this._popupForm.querySelector('.popup__save-button');
+    this._saveButtonText = this._saveButton.textContent;
   };
 
   updateSubmitHandler(action) {
@@ -22,5 +24,14 @@ export default class PopupWithConfirmation extends Popup {
     super.open();
     this._cardId = cardId;
     this._cards = cards;
+  };
+
+  //Изменяем текст кнопки submit пока сохраняются данные
+  loading(isLoading, loadingText = 'Удаление...') {
+    if (isLoading) {
+      this._saveButton.textContent = loadingText;
+    } else {
+      this._saveButton.textContent = this._saveButtonText;
+    };
   };
 }

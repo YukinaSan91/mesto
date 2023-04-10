@@ -51,6 +51,7 @@ const createCard = (data) => {
     handleDelCard: (cardId, cards) => {
       popupWithConfirmDelCard.open(cardId, cards);
       popupWithConfirmDelCard.updateSubmitHandler((data) => {
+        popupWithConfirmDelCard.loading(true);
         api
         .deleteUserCard(data.cardId)
         .then(() => {
@@ -59,6 +60,9 @@ const createCard = (data) => {
         })
         .catch((err) => {
           console.log(err);
+        })
+        .finally(() => {
+          popupWithConfirmDelCard.loading(false);
         });
       });
     },
